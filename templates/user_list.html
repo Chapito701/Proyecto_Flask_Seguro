@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Usuarios{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4">
+    <h2>Usuarios Registrados</h2>
+    <hr>
+    {% if users %}
+        <ul class="list-group">
+            {% for u in users %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ u.username|capitalize }}</strong> — {{ u.email }}
+                    </div>
+                    <a href="{{ url_for('user.profile', id=u.id) }}" class="btn btn-sm btn-info text-white">Ver Perfil</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">Aún no hay usuarios registrados. ¡Sé el primero!</p>
+    {% endif %}
+</div>
+{% endblock %}
